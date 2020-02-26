@@ -60,7 +60,7 @@ public class MainMenuScreen extends BaseScreen {
   private Group g;
   private IconButton onePlayer, twoPlayers, options, appearance, howtoplay, about, rate, getpro, stats;
   private ImageButton scoreboards, achievements, gplus, twitter, facebook;
-  private Image logo;
+  private Image logo,myImage;
   private Table buttonGroup;
 
   public MainMenuScreen() {
@@ -195,38 +195,39 @@ public class MainMenuScreen extends BaseScreen {
 
   private void createMenu() {
     g.setColor(1, 1, 1, 0);
+
+
     Table table = new Table();
     table.setFillParent(true);
 
-    table.add(logo).colspan(2);
-
-    table.row().pad(1);
-    table.add().colspan(2).fill().expand();
-
-
-    table.row().pad(1);
-    table.add(onePlayer).expand().fill().colspan(2);
-    table.row().pad(1);
-    table.add(twoPlayers).expand().fill().colspan(2);
-
-    table.row().pad(1);
-    table.add().colspan(2).fill().expand();
+    Table logoTable=new Table();
+    logoTable.add(logo).colspan(2).fill().expand();
+    Table button=new Table();
+    button.add(howtoplay).expand().fill().colspan(2);
+    button.row().pad(1).expand();
+    button.add(onePlayer).expand().fill().colspan(2);
+    button.row().pad(1);
+    button.add(twoPlayers).expand().fill().colspan(2);
+    button.row().pad(1);
+    button.add(options).expand().fill().colspan(2);
+    button.row().pad(1);
+    button.add(getpro).expand().fill().colspan(2);
+    table.add(logoTable);
+    table.add(button).expand().fill().width(table.getWidth() / 3);
 
     table.row().pad(1);
     Table t = new Table();
-    t.add(options).expand().fill().width(table.getWidth() / 3);
-    t.add(appearance).expand().fill().width(table.getWidth() / 3);
     t.add(stats).expand().fill().width(table.getWidth() / 3);
 
     table.add(t).expand().fill().colspan(2);
     // table.add(options).expand().fill().width(table.getWidth() / 2);
     // table.add(appearance).expand().fill().width(table.getWidth() / 2);
 
-    table.row().pad(1);
-    table.add().colspan(2).fill().expand();
+    //table.row().pad(1);
+    //table.add().colspan(2).fill().expand();
 
 
-    if (GnuBackgammon.Instance.nativeFunctions.isProVersion()) {
+    /*if (GnuBackgammon.Instance.nativeFunctions.isProVersion()) {
       table.row().pad(1);
       table.add(howtoplay).colspan(2).expand().fill();
 
@@ -235,13 +236,11 @@ public class MainMenuScreen extends BaseScreen {
       table.add(about).expand().fill().width(table.getWidth() / 2);
     } else {
       table.row().pad(1);
-      table.add(howtoplay).expand().fill().width(table.getWidth() / 2);
       table.add(about).expand().fill().width(table.getWidth() / 2);
 
       table.row().pad(1);
       table.add(rate).expand().fill().width(table.getWidth() / 2);
-      table.add(getpro).expand().fill().width(table.getWidth() / 2);
-    }
+    }*/
 
     g.clear();
 
